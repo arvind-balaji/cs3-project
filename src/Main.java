@@ -10,8 +10,8 @@ public class Main extends World {
     {
         //Picture bgPicture = new Picture("src/img/BG/main.png");
         //setBackground("src/img/BG/title.png");
-        //player = new Player();
-        //addActor(player, 400, 300);
+        Player player = new Player();
+        this.addObject(player, 0, 0);
     }
 
     public void act()
