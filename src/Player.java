@@ -12,15 +12,15 @@ public class Player extends PhysicsActor{
 
     public void act(){
         super.act();
-
+        if(Mayflower.isKeyDown(KEY_UP)){
+            move("JUMP");
+        }
         if(Mayflower.isKeyDown(KEY_LEFT)){
             move("LEFT");
         }
         if(Mayflower.isKeyDown(KEY_RIGHT)){
             move("RIGHT");
         }
-        if(Mayflower.isKeyDown(KEY_UP)){
-            move("JUMP");
-        }
+
     }
 }
