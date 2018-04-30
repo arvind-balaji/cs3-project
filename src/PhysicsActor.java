@@ -2,25 +2,14 @@ import mayflower.*;
 import java.util.*;
 
 public class PhysicsActor extends Actor{
-    private boolean hasLanded;
     private double vSpeed;
-    private boolean isGravity;
     private int speed;
-    //private Timer jumpTimer;
 
     public PhysicsActor() {
         speed = 3;
         vSpeed = 1.00;
-        hasLanded = false;
-        isGravity = true;
-        //jumpTimer = new Timer();
     }
 
-    public PhysicsActor(boolean grav) {
-        vSpeed = 1.00;
-        hasLanded = false;
-        isGravity = grav;
-    }
     public void act() {
         System.out.println(isGrounded());
         if(!isGrounded()){
@@ -29,9 +18,7 @@ public class PhysicsActor extends Actor{
         }else{
             vSpeed = 1.00;
         }
-//        if(this.getY() >= 100){
-//            setLocation(this.getX(), this.getY()-.1);
-//        }
+
     }
 
     public void move(String dir){
