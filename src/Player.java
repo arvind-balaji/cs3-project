@@ -5,9 +5,10 @@ import java.awt.event.KeyEvent;
 import static mayflower.Keyboard.*;
 
 
-public class Player extends PhysicsActor{
+public class Player extends AnimatedActor{
     public Player() {
-        this.setImage("img/test.jpg");
+        super(new String[][]{{"src/img/test.jpg", "src/img/test1.jpg", "src/img/test2.jpg", "src/img/test3.jpg"}});
+        this.setImage("src/img/test.jpg");
     }
 
     public void act(){

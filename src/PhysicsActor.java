@@ -11,7 +11,7 @@ public class PhysicsActor extends Actor{
     }
 
     public void act() {
-        System.out.println(isGrounded());
+        //System.out.println(isGrounded());
         if(!isGrounded()){
             setLocation(this.getX(), this.getY()+vSpeed);
             vSpeed += .1;
