@@ -7,13 +7,8 @@ import static mayflower.Keyboard.*;
 
 public class Player extends AnimatedActor{
     public Player() {
-        super(new String[][]{
-                {"src/img/test.jpg", "src/img/test1.jpg", "src/img/test2.jpg", "src/img/test3.jpg"},
-                {"src/img/test_left.jpg", "src/img/test1_left.jpg", "src/img/test2_left.jpg", "src/img/test3_left.jpg"},
-                {"src/img/test_right.jpg", "src/img/test1_right.jpg", "src/img/test2_right.jpg", "src/img/test3_right.jpg"}
-        });
+        super(new String[] {"src/img/makoto/idle/", "src/img/makoto/walk/", "src/img/makoto/walk/"}, new int[] {15, 40, 40});
         this.setImage("src/img/test.jpg");
-        resizeAll(100, 100);
     }
 
     public void act(){

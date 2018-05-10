@@ -11,6 +11,19 @@ public class AnimatedActor extends PhysicsActor {
         }
         animationTimer = new Timer();
     }
+    public AnimatedActor(String[] paths, int[] lengths){
+        //String[][] ret = new String[paths.length][lengths.length];
+        animationSet =  new Animation[paths.length];
+        animationIndex = 0;
+        animationTimer = new Timer();
+        for (int i = 0; i < paths.length; i++) {
+            String[] frames = new String[lengths[i]];
+            for (int j = 0; j < lengths[i]; j++) {
+                frames[j] = paths[i]+j+".gif";
+            }
+            animationSet[i] = new Animation(frames, 100);
+        }
+    }
     public void setAnimation(int index){
         animationIndex = index;
     }
