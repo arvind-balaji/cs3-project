@@ -14,7 +14,6 @@ public class Main extends World {
         TerrainActor ground2 = new TerrainActor();
         Player player = new Player();
         this.addObject(player, 25, 0);
-
         this.addObject(ground, 20, 200);
         this.addObject(ground2, 200, 130);
     }

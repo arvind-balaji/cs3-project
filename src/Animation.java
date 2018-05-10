@@ -30,4 +30,9 @@ public class Animation {
             frames[i].scale(w, h);
         }
     }
+    public void flip(){
+        for (int i=0; i < frames.length; i++){
+            frames[i].mirrorHorizontally();
+        }
+    }
 }

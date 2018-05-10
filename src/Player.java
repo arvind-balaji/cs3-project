@@ -20,9 +20,11 @@ public class Player extends AnimatedActor{
             if (Mayflower.isKeyDown(KEY_LEFT)) {
                 move("LEFT");
                 setAnimation(1);
-            }
+                setDirection("LEFT");
+        }
             if (Mayflower.isKeyDown(KEY_RIGHT)) {
                 move("RIGHT");
+                setDirection("RIGHT");
                 setAnimation(2);
             }
         }else{
