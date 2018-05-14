@@ -10,12 +10,15 @@ public class PhysicsActor extends Actor{
     public PhysicsActor() {
         isJumping = false;
         jumpTimer = new Timer();
-        speed = 3;
+        speed = 5;
         vSpeed = 1.00;
     }
 
     public void act() {
         //System.out.println(isGrounded());
+        if(isSunk()){
+            setLocation(this.getX(), this.getY()-2);
+        }
         if(isJumping){
             jump();
         }
@@ -56,6 +59,10 @@ public class PhysicsActor extends Actor{
     }
     private boolean canMoveRight(){
         return !(this.getObjectsAtOffset(getImage().getWidth()/2 + 1, 0, TerrainActor.class).size() > 0);
+
+    }
+    private boolean isSunk(){
+        return this.getObjectsAtOffset(0, getImage().getHeight()/2 - 5, TerrainActor.class).size() > 0;
 
     }
 }
