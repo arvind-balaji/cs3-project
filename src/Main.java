@@ -10,8 +10,12 @@ public class Main extends World {
     {
         //Picture bgPicture = new Picture("src/img/BG/main.png");
         //setBackground("src/img/BG/title.png");
+        TerrainActor ground = new TerrainActor();
+        TerrainActor ground2 = new TerrainActor();
         Player player = new Player();
-        this.addObject(player, 0, 0);
+        this.addObject(player, 25, 0);
+        this.addObject(ground, 20, 200);
+        this.addObject(ground2, 200, 130);
     }
 
     public void act()

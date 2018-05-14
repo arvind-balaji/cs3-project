@@ -2,36 +2,43 @@ import mayflower.*;
 import java.util.*;
 
 public class PhysicsActor extends Actor{
-    private boolean hasLanded;
     private double vSpeed;
-    private boolean isGravity;
     private int speed;
-    //private Timer jumpTimer;
+    private boolean isJumping;
+    private Timer jumpTimer;
+    private int height;
 
     public PhysicsActor() {
-        speed = 3;
+        height = -1;
+        isJumping = false;
+        jumpTimer = new Timer();
+        speed = 5;
         vSpeed = 1.00;
-        hasLanded = false;
-        isGravity = true;
-        //jumpTimer = new Timer();
     }
 
-    public PhysicsActor(boolean grav) {
-        vSpeed = 1.00;
-        hasLanded = false;
-        isGravity = grav;
-    }
     public void act() {
-        System.out.println(isGrounded());
+        //System.out.println(isGrounded());
+//        if(isSunk()){
+//            setLocation(this.getX(), this.getY()-1);
+//        }
+//        if(height == -1){
+//
+//        }
+        if(this.getImage().getHeight() != height){
+            setLocation(this.getX(), this.getY() + (height - this.getImage().getHeight()));
+            height = this.getImage().getHeight();
+        }
+        if(isJumping){
+            jump();
+        }
         if(!isGrounded()){
             setLocation(this.getX(), this.getY()+vSpeed);
             vSpeed += .1;
         }else{
             vSpeed = 1.00;
+            isJumping = false;
         }
-//        if(this.getY() >= 100){
-//            setLocation(this.getX(), this.getY()-.1);
-//        }
+
     }
 
     public void move(String dir){
@@ -42,9 +49,15 @@ public class PhysicsActor extends Actor{
             setLocation(this.getX() + speed, this.getY());
         }
         if(dir.equals("JUMP")){
-            setLocation(this.getX(), this.getY()- 5);
+            isJumping = true;
+            jumpTimer.reset();
         }
     }
+    private void jump(){
+        setLocation(this.getX(), this.getY()-4);
+    }
+
+
     private boolean isGrounded(){
         return this.getObjectsAtOffset(0, getImage().getHeight()/2, TerrainActor.class).size() > 0;
 
@@ -55,6 +68,10 @@ public class PhysicsActor extends Actor{
     }
     private boolean canMoveRight(){
         return !(this.getObjectsAtOffset(getImage().getWidth()/2 + 1, 0, TerrainActor.class).size() > 0);
+
+    }
+    private boolean isSunk(){
+        return this.getObjectsAtOffset(0, getImage().getHeight()/2 - 5, TerrainActor.class).size() > 0;
 
     }
 }
