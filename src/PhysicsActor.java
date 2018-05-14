@@ -6,8 +6,10 @@ public class PhysicsActor extends Actor{
     private int speed;
     private boolean isJumping;
     private Timer jumpTimer;
+    private int height;
 
     public PhysicsActor() {
+        height = -1;
         isJumping = false;
         jumpTimer = new Timer();
         speed = 5;
@@ -16,8 +18,15 @@ public class PhysicsActor extends Actor{
 
     public void act() {
         //System.out.println(isGrounded());
-        if(isSunk()){
-            setLocation(this.getX(), this.getY()-2);
+//        if(isSunk()){
+//            setLocation(this.getX(), this.getY()-1);
+//        }
+//        if(height == -1){
+//
+//        }
+        if(this.getImage().getHeight() != height){
+            setLocation(this.getX(), this.getY() + (height - this.getImage().getHeight()));
+            height = this.getImage().getHeight();
         }
         if(isJumping){
             jump();

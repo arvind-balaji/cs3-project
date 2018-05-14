@@ -5,6 +5,9 @@ public class AnimatedActor extends PhysicsActor {
     private int sequenceIndex;
     private Timer animationTimer;
     private String currentDirection;
+
+    // directly pass in 2d array of file paths.
+    // each array is the set a file paths for a single animation, each row is a different animation
     public AnimatedActor(String[][] a) {
         currentDirection = "RIGHT";
         animationSet =  new Animation[a.length];
@@ -16,7 +19,13 @@ public class AnimatedActor extends PhysicsActor {
         animationTimer = new Timer();
         this.setImage(a[0][0]);
     }
+
     public AnimatedActor(String[] paths, int[] lengths){
+        this(paths, lengths, ".gif");
+    }
+
+    // pass in array of directories for each animation and corresponding array of frame lengths
+    public AnimatedActor(String[] paths, int[] lengths, String fileType){
         //String[][] ret = new String[paths.length][lengths.length];
         currentDirection = "RIGHT";
         animationSet =  new Animation[paths.length];
@@ -26,15 +35,13 @@ public class AnimatedActor extends PhysicsActor {
         for (int i = 0; i < paths.length; i++) {
             String[] frames = new String[lengths[i]];
             for (int j = 0; j < lengths[i]; j++) {
-                frames[j] = paths[i]+j+".gif";
+                frames[j] = paths[i]+j+fileType;
             }
             animationSet[i] = new Animation(frames, 30);
         }
-        this.setImage(paths[0]+"0");
+        this.setImage(paths[0]+"0"+fileType);
     }
-    public void setAnimation(int index){
-        animationIndex = index;
-    }
+
     public void act (){
         super.act();
         if(sequenceIndex < 0){
@@ -44,6 +51,14 @@ public class AnimatedActor extends PhysicsActor {
         }
 
     }
+
+    public void setAnimation(int index){
+        animationIndex = index;
+    }
+    public void startSequence(int index) {
+        sequenceIndex = index;
+    }
+
     public void resize(int w, int h){
         for (int i = 0; i < animationSet.length; i++) {
             animationSet[i].resize(w,h);
@@ -62,9 +77,7 @@ public class AnimatedActor extends PhysicsActor {
         }
         currentDirection = dir;
     }
-    public void startAction(int index) {
-        sequenceIndex = index;
-    }
+
     private void runLoop(){
         if(animationSet[animationIndex] != null)
         {
