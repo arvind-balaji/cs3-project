@@ -14,8 +14,9 @@ public class Main extends World {
         TerrainActor ground2 = new TerrainActor();
         Player player = new Player();
         this.addObject(player, 25, 0);
-        this.addObject(ground, 20, 200);
-        this.addObject(ground2, 200, 130);
+        this.addObject(ground, 20, 300);
+        this.addObject(ground2, 200, 400);
+        Mayflower.showBounds(true);
     }
 
     public void act()
