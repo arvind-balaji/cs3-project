@@ -16,7 +16,7 @@ public class Main extends World {
         this.addObject(player, 25, 0);
         this.addObject(ground, 20, 300);
         this.addObject(ground2, 200, 400);
-        Mayflower.showBounds(true);
+        //Mayflower.showBounds(true);
     }
 
     public void act()

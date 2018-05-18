@@ -18,17 +18,22 @@ public class FightingActor extends AnimatedActor{
 
     public void act(){
         super.act();
-        switch (currentState.get(0)){
+        switch (currentState.get(currentState.size() -1)){
             case "WALK_LEFT":
                 setAnimation(1);
+                break;
             case "WALK_RIGHT":
                 setAnimation(2);
+                break;
             case "JUMP":
                 startSequence(3);
+                break;
             case "PUNCH":
                 startSequence(4);
+                break;
             case "KICK":
                 startSequence(5);
+                break;
             default:
                 setAnimation(0);
         }
@@ -37,16 +42,22 @@ public class FightingActor extends AnimatedActor{
                 case "WALK_LEFT":
                     move("LEFT");
                     setDirection("LEFT");
+                    break;
                 case "WALK_RIGHT":
                     move("RIGHT");
                     setDirection("RIGHT");
+                    break;
                 case "JUMP":
-                    move("JUMP");
+                     move("JUMP");
             }
         }
-        System.out.println(currentState.toArray().toString());
+        System.out.println(currentState);
     }
     public void setState ( List<String> state) {
         currentState = state;
+    }
+
+    public List<String> getState() {
+        return currentState;
     }
 }

@@ -22,7 +22,7 @@ public class Player extends FightingActor{
             },
             ".gif"
         );
-        resize(1.5);
+        resize(1);
     }
 
     public void act(){
@@ -38,12 +38,13 @@ public class Player extends FightingActor{
         if (Mayflower.isKeyDown(KEY_Z)) {
             state.add("PUNCH");
         }
-        if (Mayflower.isKeyDown(KEY_LEFT)) {
-            state.add("WALK_LEFT");
-        }
         if (Mayflower.isKeyDown(KEY_RIGHT)) {
             state.add("WALK_RIGHT");
         }
+        if (Mayflower.isKeyDown(KEY_LEFT)) {
+            state.add("WALK_LEFT");
+        }
+
         setState(state);
     }
 }

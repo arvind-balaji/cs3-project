@@ -5,7 +5,8 @@ public class AnimatedActor extends PhysicsActor {
     private int sequenceIndex;
     private Timer animationTimer;
     private String currentDirection;
-
+    private int height;
+    private int width;
     // directly pass in 2d array of file paths.
     // each array is the set a file paths for a single animation, each row is a different animation
     public AnimatedActor(String[][] a) {
@@ -27,6 +28,8 @@ public class AnimatedActor extends PhysicsActor {
     // pass in array of directories for each animation and corresponding array of frame lengths
     public AnimatedActor(String[] paths, int[] lengths, String fileType){
         //String[][] ret = new String[paths.length][lengths.length];
+        height = 100;
+        width = 100;
         currentDirection = "RIGHT";
         animationSet =  new Animation[paths.length];
         animationIndex = 0;
@@ -49,7 +52,14 @@ public class AnimatedActor extends PhysicsActor {
         }else{
             runSequence();
         }
-
+        if(this.getImage().getHeight() != height){
+            setLocation(this.getX(), this.getY() + (height - this.getImage().getHeight()));
+            height = this.getImage().getHeight();
+        }
+//        if(this.getImage().getWidth() != width){
+//            setLocation(this.getX(), this.getX() + (width - this.getImage().getWidth()));
+//            width = this.getImage().getWidth();
+//        }
     }
 
     public void setAnimation(int index){

@@ -23,14 +23,15 @@ public class PhysicsActor extends Actor{
             setLocation(this.getX(), this.getY()-1);
         }
 
-        if(this.getImage().getHeight() != height){
-            setLocation(this.getX(), this.getY() + (height - this.getImage().getHeight()));
-            height = this.getImage().getHeight();
-        }
-        if(this.getImage().getHeight() != width){
-            setLocation(this.getX() + (width - this.getImage().getWidth())/2, this.getY());
-            width = this.getImage().getWidth();
-        }
+//        if(this.getImage().getHeight() > height){
+//            System.out.println((height - this.getImage().getHeight()));
+//            setLocation(this.getX(), this.getY() + (height - this.getImage().getHeight()));
+//            height = this.getImage().getHeight();
+//        }
+//        if(this.getImage().getHeight() != width){
+//            setLocation(this.getX() + (width - this.getImage().getWidth())/2, this.getY());
+//            width = this.getImage().getWidth();
+//        }
         if(isJumping){
             jump();
         }
