@@ -1,6 +1,8 @@
 import mayflower.*;
 public class AnimatedActor extends PhysicsActor {
     private Animation[] animationSet;
+    private Animation[] animationSetLeft;
+    private Animation[] animationSetRight;
     private int animationIndex;
     private int sequenceIndex;
     private Timer animationTimer;
@@ -32,6 +34,8 @@ public class AnimatedActor extends PhysicsActor {
         width = 100;
         currentDirection = "RIGHT";
         animationSet =  new Animation[paths.length];
+        animationSetLeft =  new Animation[paths.length];
+        animationSetRight =  new Animation[paths.length];
         animationIndex = 0;
         sequenceIndex = -1;
         animationTimer = new Timer();
@@ -40,8 +44,13 @@ public class AnimatedActor extends PhysicsActor {
             for (int j = 0; j < lengths[i]; j++) {
                 frames[j] = paths[i]+j+fileType;
             }
-            animationSet[i] = new Animation(frames, 30);
+            animationSetRight[i] = new Animation(frames, 30);
         }
+        animationSet = animationSetRight;
+        for (int i = 0; i < animationSet.length; i++) {
+            animationSetLeft[i] = animationSet[i].flip();
+        }
+
         this.setImage(paths[0]+"0"+fileType);
     }
 
@@ -56,10 +65,10 @@ public class AnimatedActor extends PhysicsActor {
             setLocation(this.getX(), this.getY() + (height - this.getImage().getHeight()));
             height = this.getImage().getHeight();
         }
-//        if(this.getImage().getWidth() != width){
-//            setLocation(this.getX(), this.getX() + (width - this.getImage().getWidth()));
-//            width = this.getImage().getWidth();
-//        }
+        if(this.getImage().getWidth() != width){
+            setLocation(this.getX() + (width - this.getImage().getWidth())*.5,  this.getY());
+            width = this.getImage().getWidth();
+        }
     }
 
     public void setAnimation(int index){
